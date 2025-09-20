@@ -17,7 +17,7 @@ public class MedicamentoService {
         return medicamentoRepository.save(medicamento);
     }
 
-    public List<Medicamento> listarTodos(Medicamento medicamento) {
+    public List<Medicamento> listarTodos() {
         return medicamentoRepository.findAll();
     }
 

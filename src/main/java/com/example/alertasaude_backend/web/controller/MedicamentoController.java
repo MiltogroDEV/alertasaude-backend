@@ -2,6 +2,11 @@ package com.example.alertasaude_backend.web.controller;
 
 import com.example.alertasaude_backend.entity.Medicamento;
 import com.example.alertasaude_backend.service.MedicamentoService;
+import com.example.alertasaude_backend.web.dto.MedicamentoCreateDTO;
+import com.example.alertasaude_backend.web.dto.MedicamentoResponseDTO;
+import com.example.alertasaude_backend.web.dto.mapper.MedicamentoMapper;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,23 +23,27 @@ public class MedicamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<Medicamento> criar(@RequestBody Medicamento medicamento) {
-        return ResponseEntity.ok(medicamentoService.criarMedicamento(medicamento));
+    public ResponseEntity<MedicamentoResponseDTO> criar(@Valid @RequestBody MedicamentoCreateDTO createDTO) {
+        //Medicamento user = medicamentoService.criarMedicamento(MedicamentoMapper.toMedicamento(createDTO));
+        Medicamento user = medicamentoService.criarMedicamento(createDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(MedicamentoMapper.toDTO(user));
     }
 
     @GetMapping
-    public ResponseEntity<List<Medicamento>> listarTodos() {
-        return ResponseEntity.ok(medicamentoService.listarTodos());
+    public ResponseEntity<List<MedicamentoResponseDTO>> listarTodos() {
+        List<Medicamento> users = medicamentoService.listarTodos();
+        return ResponseEntity.ok(MedicamentoMapper.toListDTO(users));
     }
 
-    @GetMapping("/id")
-    public ResponseEntity<Medicamento> buscarPorId(@PathVariable int id) {
-        return ResponseEntity.ok(medicamentoService.buscarPorId(id));
+    @GetMapping("/{id}")
+    public ResponseEntity<MedicamentoResponseDTO> buscarPorId(@PathVariable int id) {
+        Medicamento user = medicamentoService.buscarPorId(id);
+        return ResponseEntity.ok(MedicamentoMapper.toDTO(user));
     }
 
-    @DeleteMapping("/id")
-    public ResponseEntity<Void> deletarPorId(@PathVariable int id) {
-        medicamentoService.deletarPorId(id);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{id}")
+    public ResponseEntity<MedicamentoResponseDTO> deletarPorId(@PathVariable int id) {
+        Medicamento user = medicamentoService.deletarPorId(id);
+        return ResponseEntity.ok(MedicamentoMapper.toDTO(user));
     }
 }

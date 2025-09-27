@@ -1,6 +1,7 @@
 package com.example.alertasaude_backend.service;
 
 import com.example.alertasaude_backend.entity.Medicamento;
+import com.example.alertasaude_backend.entity.Usuario;
 import com.example.alertasaude_backend.repository.MedicamentoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,9 @@ public class MedicamentoService {
                 .orElseThrow(() -> new RuntimeException("Medicamento não encontrado"));
     }
 
-    public void deletarPorId(int id) {
+    public Medicamento deletarPorId(int id) {
+        Medicamento medicamento = buscarPorId(id);
         medicamentoRepository.deleteById(id);
+        return medicamento;
     }
 }

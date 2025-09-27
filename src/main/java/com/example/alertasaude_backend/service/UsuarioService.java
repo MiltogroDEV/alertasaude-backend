@@ -26,7 +26,9 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
-    public void deletarPorId(int id) {
+    public Usuario deletarPorId(int id) {
+        Usuario user = buscarPorId(id);
         usuarioRepository.deleteById(id);
+        return user;
     }
 }

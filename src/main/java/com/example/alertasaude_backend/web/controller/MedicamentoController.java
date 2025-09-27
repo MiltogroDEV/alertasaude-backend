@@ -24,7 +24,8 @@ public class MedicamentoController {
 
     @PostMapping
     public ResponseEntity<MedicamentoResponseDTO> criar(@Valid @RequestBody MedicamentoCreateDTO createDTO) {
-        Medicamento user = medicamentoService.criarMedicamento(MedicamentoMapper.toMedicamento(createDTO));
+        //Medicamento user = medicamentoService.criarMedicamento(MedicamentoMapper.toMedicamento(createDTO));
+        Medicamento user = medicamentoService.criarMedicamento(createDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(MedicamentoMapper.toDTO(user));
     }
 

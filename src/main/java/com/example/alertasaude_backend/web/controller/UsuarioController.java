@@ -3,7 +3,6 @@ package com.example.alertasaude_backend.web.controller;
 import com.example.alertasaude_backend.entity.Usuario;
 import com.example.alertasaude_backend.service.UsuarioService;
 import com.example.alertasaude_backend.web.dto.UsuarioCreateDTO;
-import com.example.alertasaude_backend.web.dto.UsuarioGetDTO;
 import com.example.alertasaude_backend.web.dto.UsuarioResponseDTO;
 import com.example.alertasaude_backend.web.dto.mapper.UsuarioMapper;
 import jakarta.validation.Valid;

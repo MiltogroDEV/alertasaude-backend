@@ -1,4 +1,4 @@
-package com.ogrodev.raffles_api;
+package com.example.alertasaude_backend;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +13,10 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")          // libera para todas as rotas
-                        .allowedOrigins("*")        // permite qualquer origem
-                        .allowedMethods("*")        // permite todos os métodos (GET, POST, PUT, DELETE, etc)
-                        .allowedHeaders("*");       // permite todos os headers
+                registry.addMapping("/**")
+                        .allowedOrigins("*")
+                        .allowedMethods("*")
+                        .allowedHeaders("*");
             }
         };
     }
